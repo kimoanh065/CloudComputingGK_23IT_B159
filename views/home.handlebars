@@ -1,0 +1,70 @@
+<h1>📚 QUẢN LÝ SÁCH</h1>
+<p>Số lần truy cập trong Session: {{visits}}</p>
+
+<h2>Thêm sách mới</h2>
+
+<form action="/books" method="POST">
+
+    <input
+        type="text"
+        name="productCode"
+        placeholder="Mã sản phẩm (VD: 159001)"
+        required
+    >
+
+    <input
+        type="text"
+        name="bookName"
+        placeholder="Tên sách"
+        required
+    >
+
+    <input
+        type="number"
+        name="price"
+        placeholder="Giá"
+        min="0"
+        step="0.01"
+        required
+    >
+
+    <button type="submit">Thêm sách</button>
+
+</form>
+
+<h2>Danh sách sách</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Mã SP</th>
+            <th>Tên sách</th>
+            <th>Giá gốc</th>
+            <th>VAT</th>
+            <th>Giá sau VAT</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        {{#each books}}
+        <tr>
+            <td>{{productCode}}</td>
+            <td>{{bookName}}</td>
+            <td>{{price}}</td>
+            <td>{{vat}}%</td>
+            <td>{{priceAfterVAT}}</td>
+        </tr>
+
+        {{else}}
+
+        <tr>
+            <td colspan="5">
+                Chưa có sách nào.
+            </td>
+        </tr>
+
+        {{/each}}
+
+    </tbody>
+</table>
